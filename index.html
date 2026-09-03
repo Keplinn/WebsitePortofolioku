@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Website Portofolio Mikael Kevin Siahaan - Siswa SMK Telkom Purwokerto bertema Star Wars dengan antarmuka futuristik, opening crawl 3D, dan efek lightsaber.">
+  <title>MIKAEL KEVIN SIAHAAN | Star Wars Portfolio - Siswa SMK Telkom Purwokerto</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="theme-jedi">
+
+  <!-- Interactive Canvas background (Starfield & Nebula) -->
+  <canvas id="starfield-canvas"></canvas>
+  <div class="nebula-overlay"></div>
+  <div class="scanline-overlay"></div>
+
+  <!-- INTRO SCREEN / OPENING CRAWL -->
+  <div id="intro-screen" class="intro-screen">
+    <div class="intro-controls">
+      <button id="btn-skip-intro" class="scifi-btn btn-sm"><i class="fa-solid fa-forward-step"></i> LEWATI
+        INTRO</button>
+      <button id="btn-audio-intro" class="scifi-btn btn-sm"><i class="fa-solid fa-volume-high"></i> AUDIO: ON</button>
+    </div>
+
+    <!-- Step 1: Blue Quote -->
+    <div id="intro-quote" class="intro-quote">
+      A long time ago in a galaxy far, far away...
+    </div>
+
+    <!-- Step 2: Main Logo Zoom Out -->
+    <div id="intro-logo-container" class="intro-logo-container">
+      <h1 class="star-wars-logo">MIKAEL KEVIN<br>SIAHAAN</h1>
+      <div class="star-wars-sublogo">PORTFOLIO &bull; SISWA SMK TELKOM PURWOKERTO</div>
+    </div>
+
+    <!-- Step 3: 3D Crawl Text -->
+    <div id="crawl-wrapper" class="crawl-wrapper">
+      <div id="crawl-content" class="crawl-content">
+        <div class="crawl-title">
+          <p>EPISODE VIII</p>
+          <h2>THE CREATIVE FORCE AWAITS</h2>
+        </div>
+        <p>Di era transformasi digital galaksi yang luas, seorang siswa SMK Telkom Purwokerto memadukan kekuatan Kode,
+          Desain Antarmuka Futuristik, dan Teknologi Web Terdepan.</p>
+        <p>Selamat datang di Holo-Vault portofolio resmi Mikael Kevin Siahaan. Di sini tersimpan cetak biru proyek-proyek
+          tercanggih, mulai dari antarmuka stasion luar angkasa Death Star UI, sistem navigasi Millennium Falcon
+          Dashboard, hingga modul kecerdasan buatan dan jaringan data sub-spasi.</p>
+        <p>Gunakan navigasi lightsaber untuk menelusuri dossier operatif, kemampuan teknis, log misi pengalaman, layanan
+          transmisi, hingga komentar sekutu galaksi. Semoga Force menyertai perjalanan Anda...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HUD NAVBAR -->
+  <header id="main-header" class="main-header">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo">
+        <span class="logo-symbol"><i class="fa-solid fa-jedi"></i></span>
+        <div class="logo-text">
+          <span class="name">MIKAEL KEVIN SIAHAAN</span>
+          <span class="role">SISWA SMK TELKOM PWT</span>
+        </div>
+      </a>
+
+      <!-- Lightsaber Styled Navigation -->
+      <nav class="lightsaber-nav">
+        <ul class="nav-links">
+          <li class="nav-item active"><a href="#hero" data-nav="hero"><span class="saber-glow"></span>BERANDA</a></li>
+          <li class="nav-item"><a href="#about" data-nav="about"><span class="saber-glow"></span>ABOUT ME</a></li>
+          <li class="nav-item"><a href="#skills" data-nav="skills"><span class="saber-glow"></span>SKILLS</a></li>
+          <li class="nav-item"><a href="#projects" data-nav="projects"><span class="saber-glow"></span>PROJECTS</a></li>
+          <li class="nav-item"><a href="#experience" data-nav="experience"><span
+                class="saber-glow"></span>PENDIDIKAN</a></li>
+          <li class="nav-item"><a href="#services" data-nav="services"><span class="saber-glow"></span>PELAYANAN</a>
+          </li>
+          <li class="nav-item"><a href="#achievements" data-nav="achievements"><span
+                class="saber-glow"></span>PRESTASI</a></li>
+              <li class="nav-item"><a href="#comments" data-nav="comments"><span
+                class="saber-glow"></span>KOMENTAR</a></li>
+          <li class="nav-item"><a href="#contact" data-nav="contact"><span class="saber-glow"></span>KONTAK</a></li>
+        </ul>
+      </nav>
+
+      <!-- Controls & Customizers -->
+      <div class="header-controls">
+        <!-- Lightsaber Color Switcher -->
+        <div class="saber-color-picker" title="Pilih Warna Lightsaber">
+          <button class="color-dot blue active" data-color="blue" title="Jedi Blue"></button>
+          <button class="color-dot green" data-color="green" title="Master Green"></button>
+          <button class="color-dot purple" data-color="purple" title="Windu Purple"></button>
+          <button class="color-dot red" data-color="red" title="Sith Red"></button>
+        </div>
+
+        <!-- Force Side Alignment Toggle -->
+        <button id="alignment-toggle" class="alignment-toggle" title="Ganti Alignment Force (Light / Dark)">
+          <i class="fa-solid fa-circle-half-stroke"></i> <span class="align-label">LIGHT SIDE</span>
+        </button>
+
+        <!-- Sound FX Toggle -->
+        <button id="sound-toggle" class="sound-toggle" title="Efek Suara Sci-Fi">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <!-- Replay Crawl Button -->
+        <button id="btn-replay-crawl" class="scifi-btn btn-icon" title="Putar Ulang Opening Crawl">
+          <i class="fa-solid fa-film"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-toggle" class="mobile-toggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-text-content">
+          <div class="opening-tag">A LONG TIME AGO IN A GALAXY FAR, FAR AWAY...</div>
+          <h1 class="hero-title star-wars-gold">
+            THE CREATIVE<br>
+            <span class="glow-effect">FORCE AWAITS.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Exploring Code, Sci-Fi UI Design, and the Unknown. Spesialis pembuat antarmuka web modern dengan performa
+            tinggi & estetika sinematik.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="scifi-btn btn-primary lightsaber-btn">
+              <span class="btn-saber-blade"></span>
+              <i class="fa-solid fa-journal-whills"></i> LIHAT PROYEK
+            </a>
+            <a href="#contact" class="scifi-btn btn-secondary">
+              <i class="fa-solid fa-satellite-dish"></i> KIRIM TRANSMISI
+            </a>
+          </div>
+
+          <div class="hero-telemetry">
+            <div class="tele-item">
+              <span class="tele-val">99.8%</span>
+              <span class="tele-lbl">FORCE SYNC</span>
+            </div>
+            <div class="tele-item">
+              <span class="tele-val">45+</span>
+              <span class="tele-lbl">MISSION LOGS</span>
+            </div>
+            <div class="tele-item">
+              <span class="tele-val">100%</span>
+              <span class="tele-lbl">CODE DEFENSE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Hologram Avatar Frame -->
+        <div class="hero-avatar-wrapper">
+          <div class="holo-emitter-top"></div>
+          <div class="holo-display-card">
+            <div class="holo-corner tl"></div>
+            <div class="holo-corner tr"></div>
+            <div class="holo-corner bl"></div>
+            <div class="holo-corner br"></div>
+
+            <div class="holo-image-container">
+              <div class="hologram-character">
+                <img src="jedi-profile.jpg" alt="Mikael Kevin Siahaan dalam balutan jubah Jedi" class="hero-profile-image">
+                <div class="holo-scanlines"></div>
+                <div class="holo-flicker"></div>
+              </div>
+            </div>
+
+            <!-- Holo Card Footer Info -->
+            <div class="holo-card-info">
+              <div class="holo-badge"><i class="fa-solid fa-shield-halved"></i> OPERATIVE ID: MKS-8821</div>
+              <div class="holo-name">MIKAEL KEVIN SIAHAAN</div>
+              <div class="holo-rank">SISWA SMK TELKOM PURWOKERTO</div>
+            </div>
+          </div>
+          <div class="holo-emitter-bottom"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: ABOUT ME -->
+    <section id="about" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fa-solid fa-address-card"></i> DOSSIER OPERATIF</span>
+          <h2 class="section-title">ABOUT <span class="text-gold">ME</span></h2>
+          <div class="header-divider"></div>
+        </div>
+
+        <div class="about-grid">
+          <!-- Control Panel Dossier Box -->
+          <div class="control-panel-card dossier-box">
+            <div class="panel-header">
+              <span class="panel-title"><i class="fa-solid fa-terminal"></i> TRANSMISI BIODATA & PROFIL</span>
+              <span class="panel-status status-online">&bull; TRANSMITTING</span>
+            </div>
+            <div class="panel-body">
+              <p class="dossier-intro">
+                Salam dari Galaksi Digital! Saya <strong>Mikael Kevin Siahaan</strong>, seorang <strong>Siswa SMK Telkom Purwokerto</strong> yang berdedikasi membangun antarmuka web modern dengan performa
+                tinggi, animasi sinematik, dan estetika sci-fi yang dramatis.
+              </p>
+              <p>
+                Berbekal pemahaman mendalam tentang prinsip-prinsip desain modern dan arsitektur kode yang solid, saya
+                mengubah ide-ide kompleks menjadi aplikasi web interaktif yang responsif, intuitif, dan memukau pengguna
+                pada pandangan pertama.
+              </p>
+
+              <div class="dossier-details-grid">
+                <div class="detail-item">
+                  <span class="detail-label">NAMA OPERATIF:</span>
+                  <span class="detail-val">Mikael Kevin Siahaan</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">BASE OPERASI:</span>
+                  <span class="detail-val">Purwokerto, Indonesia / SMK Telkom PWT</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">PERAN/SPESIALISASI:</span>
+                  <span class="detail-val">Siswa SMK Telkom Purwokerto</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">FORCE ALIGNMENT:</span>
+                  <span class="detail-val text-cyan">Jedi Order (Light Side)</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">STATUS KETERSEDIAAN:</span>
+                  <span class="detail-val text-gold">Ready for New Missions</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">BAHOSA UTAMA:</span>
+                  <span class="detail-val">Bahasa Indonesia, English</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Force Metrics & Alignment Box -->
+          <div class="control-panel-card metrics-box">
+            <div class="panel-header">
+              <span class="panel-title"><i class="fa-solid fa-chart-line"></i> FORCE METRICS & RADAR</span>
+              <span class="panel-status status-active">SYNC 100%</span>
+            </div>
+            <div class="panel-body">
+              <div class="force-meter-item">
+                <div class="meter-info">
+                  <span><i class="fa-solid fa-code"></i> CODE ARCHITECTURE & CLEAN KODE</span>
+                  <span class="meter-pct">98%</span>
+                </div>
+                <div class="scifi-progress-bar">
+                  <div class="progress-fill" style="width: 98%;"></div>
+                </div>
+              </div>
+
+              <div class="force-meter-item">
+                <div class="meter-info">
+                  <span><i class="fa-solid fa-wand-magic-sparkles"></i> SCI-FI UI/UX & ANIMASI</span>
+                  <span class="meter-pct">95%</span>
+                </div>
+                <div class="scifi-progress-bar">
+                  <div class="progress-fill" style="width: 95%;"></div>
+                </div>
+              </div>
+
+              <div class="force-meter-item">
+                <div class="meter-info">
+                  <span><i class="fa-solid fa-gauge-high"></i> CORE WEB VITALS & OPTIMISASI</span>
+                  <span class="meter-pct">96%</span>
+                </div>
+                <div class="scifi-progress-bar">
+                  <div class="progress-fill" style="width: 96%;"></div>
+                </div>
+              </div>
+
+
+              <!-- Quick Quote / Philosophy -->
+              <div class="force-quote-card">
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <p>"Do or do not. There is no try when it comes to writing clean, scalable, and majestic code."</p>
+                <div class="quote-author">- Jedi Code Philosophy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: SKILLS -->
+    <section id="skills" class="section-padding bg-panel">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fa-solid fa-microchip"></i> KEALIAN TEKNIS</span>
+          <h2 class="section-title">FORCE <span class="text-gold">SKILLS</span></h2>
+          <div class="header-divider"></div>
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="skill-category-filters">
+          <button class="scifi-tab-btn active" data-skill-cat="all">SEMUA SKILL</button>
+          <button class="scifi-tab-btn" data-skill-cat="frontend">FRONTEND</button>
+          <button class="scifi-tab-btn" data-skill-cat="cyber">UI & DESIGN</button>
+          <button class="scifi-tab-btn" data-skill-cat="force">TOOLS</button>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="skills-grid">
+          <!-- Skill Item 1: HTML -->
+          <div class="skill-card" data-cat="frontend">
+            <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
+            <div class="skill-info">
+              <h3 class="skill-name">HTML5 & SEMANTIC WEB</h3>
+            </div>
+          </div>
+
+          <!-- Skill Item 2: CSS -->
+          <div class="skill-card" data-cat="frontend">
+            <div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
+            <div class="skill-info">
+              <h3 class="skill-name">VANILLA CSS3 & ANIMATIONS</h3>
+            </div>
+          </div>
+
+          <!-- Skill Item 3: JAVASCRIPT -->
+          <div class="skill-card" data-cat="frontend">
+            <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+            <div class="skill-info">
+              <h3 class="skill-name">JAVASCRIPT ES6+</h3>
+            </div>
+          </div>
+
+          <!-- Skill Item 4: FIGMA -->
+          <div class="skill-card" data-cat="cyber">
+            <div class="skill-icon"><i class="fa-brands fa-figma"></i></div>
+            <div class="skill-info">
+              <h3 class="skill-name">FIGMA & UI/UX DESIGN</h3>
+            </div>
+          </div>
+
+          <!-- Skill Item 5: GIT & GITHUB -->
+          <div class="skill-card" data-cat="force">
+            <div class="skill-icon"><i class="fa-brands fa-git-alt"></i></div>
+            <div class="skill-info">
+              <h3 class="skill-name">GIT & GITHUB VERSION CONTROL</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PROJECTS / PORTO -->
+    <section id="projects" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fa-solid fa-folder-open"></i> CETAK BIRU & CONTROL PANEL</span>
+          <h2 class="section-title">FEATURED <span class="text-gold">PROJECTS</span></h2>
+          <p class="section-subtitle">Antarmuka panel kontrol futuristik dengan indikator digital dan simulasi
+            interaktif.</p>
+          <div class="header-divider"></div>
+        </div>
+
+        <!-- Project Filter Controls -->
+        <div class="project-filters">
+          <button class="scifi-btn btn-sm active" data-proj-filter="all">SEMUA PROJEK</button>
+          <button class="scifi-btn btn-sm" data-proj-filter="uiux">UI/UX DESIGN</button>
+          <button class="scifi-btn btn-sm" data-proj-filter="webapp">WEB APPLICATION</button>
+        </div>
+
+        <!-- Futuristic Control Panel Project Cards Grid -->
+        <div class="projects-grid">
+
+          <!-- PROJECT CARD 1: DESAIN UI/UX TOCO-TACO -->
+          <div class="control-panel-card project-card" data-proj-cat="uiux">
+            <div class="card-status-bar">
+              <span class="status-indicator active">DESIGN COMPLETED</span>
+              <span class="project-id">BLUEPRINT #TT-01</span>
+            </div>
+            <div class="project-thumbnail">
+              <div class="mockup-screen toco-taco-screen">
+                <svg viewBox="0 0 400 240" class="screen-svg">
+                  <!-- Toco Taco Green Screen Mockup -->
+                  <rect width="400" height="240" fill="#4caf50" rx="4"/>
+                  <!-- Card White Mobile Screens -->
+                  <rect x="25" y="25" width="100" height="190" fill="#ffffff" rx="6" stroke="#2e7d32" stroke-width="2"/>
+                  <!-- Taco Mascot Logo -->
+                  <circle cx="75" cy="100" r="24" fill="#fff9c4"/>
+                  <path d="M 55 108 Q 75 80 95 108 Z" fill="#ffe81f" stroke="#e65100" stroke-width="2"/>
+                  <path d="M 60 106 Q 75 92 90 106 Z" fill="#00e676"/>
+                  <text x="75" y="140" fill="#1b5e20" font-size="10" font-weight="bold" font-family="sans-serif" text-anchor="middle">TOCO TACO</text>
+                  <text x="75" y="155" fill="#e65100" font-size="8" font-family="sans-serif" text-anchor="middle">Welcome</text>
+
+                  <!-- Right Main App Screens -->
+                  <rect x="145" y="25" width="110" height="190" fill="#ffffff" rx="6" stroke="#2e7d32" stroke-width="2"/>
+                  <circle cx="200" cy="55" r="14" fill="#fff9c4"/>
+                  <path d="M 188 60 Q 200 45 212 60 Z" fill="#ffe81f"/>
+                  <text x="200" y="76" fill="#1b5e20" font-size="7" font-weight="bold" font-family="sans-serif" text-anchor="middle">TOCO TACO</text>
+                  <!-- Form fields -->
+                  <rect x="155" y="90" width="90" height="14" rx="3" fill="#fffde7" stroke="#ffd54f" stroke-width="1"/>
+                  <text x="160" y="100" fill="#9e9d24" font-size="6" font-family="sans-serif">Email: sign@mail.com</text>
+                  <rect x="155" y="112" width="90" height="14" rx="3" fill="#fffde7" stroke="#ffd54f" stroke-width="1"/>
+                  <text x="160" y="122" fill="#9e9d24" font-size="6" font-family="sans-serif">Password: ••••••••</text>
+                  <rect x="155" y="134" width="90" height="16" rx="8" fill="#2e7d32"/>
+                  <text x="200" y="145" fill="#ffffff" font-size="7" font-weight="bold" font-family="sans-serif" text-anchor="middle">Masuk</text>
+
+                  <!-- Third Screen -->
+                  <rect x="270" y="25" width="105" height="190" fill="#ffffff" rx="6" stroke="#2e7d32" stroke-width="2"/>
+                  <rect x="280" y="40" width="85" height="60" rx="4" fill="#fff9c4"/>
+                  <text x="322.5" y="65" fill="#2e7d32" font-size="8" font-weight="bold" font-family="sans-serif" text-anchor="middle">Our Store</text>
+                  <text x="322.5" y="78" fill="#558b2f" font-size="6" font-family="sans-serif" text-anchor="middle">• Mexico • NYC • Semarang</text>
+                  <rect x="280" y="115" width="85" height="14" rx="3" fill="#fffde7" stroke="#ffd54f" stroke-width="1"/>
+                  <rect x="280" y="135" width="85" height="14" rx="3" fill="#fffde7" stroke="#ffd54f" stroke-width="1"/>
+                  <rect x="280" y="157" width="85" height="16" rx="8" fill="#2e7d32"/>
+                  <text x="322.5" y="168" fill="#ffffff" font-size="7" font-weight="bold" font-family="sans-serif" text-anchor="middle">Daftar</text>
+                </svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="project-title">DESAIN UI/UX TOCO-TACO</h3>
+              <p class="project-desc">
+                Perancangan antarmuka pengguna (UI/UX) untuk aplikasi pemesanan makanan Toco Taco. Mengusung tema hijau segar dengan alur splash screen, autentikasi login/daftar, katalog menu produk, dan informasi gerai toko.
+              </p>
+              <div class="tech-tags">
+                <span class="tag">Figma</span>
+                <span class="tag">UI/UX Design</span>
+                <span class="tag">Mobile App UI</span>
+                <span class="tag">Wireframing</span>
+              </div>
+              <div class="card-actions">
+                <button class="scifi-btn btn-sm btn-block btn-open-modal" data-modal="modal-tt">
+                  <i class="fa-solid fa-expand"></i> DETAIL & PREVIEW
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT CARD 2: WEBSITE TRADELAB.ID -->
+          <div class="control-panel-card project-card" data-proj-cat="webapp">
+            <div class="card-status-bar">
+              <span class="status-indicator online">LIVE APPLICATION</span>
+              <span class="project-id">BLUEPRINT #TL-02</span>
+            </div>
+            <div class="project-thumbnail">
+              <div class="mockup-screen tradelab-screen">
+                <svg viewBox="0 0 400 240" class="screen-svg">
+                  <!-- Dark Tradelab Background -->
+                  <rect width="400" height="240" fill="#0d1117" rx="4"/>
+                  <!-- Glowing accent blur -->
+                  <circle cx="50" cy="30" r="60" fill="rgba(0, 230, 118, 0.15)"/>
+                  <circle cx="360" cy="200" r="70" fill="rgba(0, 230, 118, 0.1)"/>
+                  <!-- Tradelab.id Title -->
+                  <text x="30" y="45" fill="#00e676" font-size="16" font-weight="bold" font-family="sans-serif">Tradelab.id</text>
+                  <!-- Hero Text -->
+                  <text x="200" y="85" fill="#ffffff" font-size="18" font-weight="900" font-family="sans-serif" text-anchor="middle">Start Learning Journey</text>
+                  <text x="200" y="105" fill="#9e9e9e" font-size="9" font-family="sans-serif" text-anchor="middle">Access trading lessons, practice, and progress tracking in one dashboard.</text>
+                  <!-- Inner Form Box -->
+                  <rect x="100" y="120" width="200" height="100" fill="#161b22" rx="8" stroke="rgba(0, 230, 118, 0.3)" stroke-width="1.5"/>
+                  <!-- Email field -->
+                  <text x="115" y="137" fill="#757575" font-size="7" font-family="sans-serif">EMAIL</text>
+                  <rect x="115" y="142" width="170" height="18" rx="4" fill="#21262d"/>
+                  <text x="125" y="154" fill="#9e9e9e" font-size="7" font-family="sans-serif">name@firm.com</text>
+                  <!-- Password field -->
+                  <text x="115" y="172" fill="#757575" font-size="7" font-family="sans-serif">PASSWORD</text>
+                  <rect x="115" y="177" width="170" height="18" rx="4" fill="#21262d"/>
+                  <text x="125" y="189" fill="#9e9e9e" font-size="7" font-family="sans-serif">••••••••••••</text>
+                  <!-- Button -->
+                  <rect x="115" y="202" width="170" height="16" rx="8" fill="#00e676"/>
+                  <text x="200" y="213" fill="#0d1117" font-size="8" font-weight="bold" font-family="sans-serif" text-anchor="middle">Sign In to Dashboard</text>
+                </svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="project-title">WEBSITE TRADELAB.ID</h3>
+              <p class="project-desc">
+                Platform edukasi web interaktif untuk belajar trading dari nol. Menyediakan materi kelas trading terstruktur, modul latihan simulasi, dan sistem pelacakan progress belajar.
+              </p>
+              <div class="tech-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Trading Platform</span>
+                <span class="tag">Web Application</span>
+              </div>
+              <div class="card-actions">
+                <button class="scifi-btn btn-sm btn-block btn-open-modal" data-modal="modal-tl">
+                  <i class="fa-solid fa-expand"></i> DETAIL & PREVIEW
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: RIWAYAT PENDIDIKAN / LOG MISI -->
+    <section id="experience" class="section-padding bg-panel">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fa-solid fa-graduation-cap"></i> JEJAK AKADEMIK GALAKSI</span>
+          <h2 class="section-title">RIWAYAT <span class="text-gold">PENDIDIKAN</span></h2>
+          <div class="header-divider"></div>
+        </div>
+
+        <!-- Sci-Fi Holo Timeline -->
+        <div class="holo-timeline">
+
+          <!-- Item 1: SMK Telkom PWT -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="timeline-content control-panel-card">
+              <div class="timeline-date"><i class="fa-regular fa-calendar"></i> SEKARANG (AKTIF)</div>
+              <h3 class="timeline-role">SISWA KELAS 11</h3>
+              <div class="timeline-company text-cyan"><i class="fa-solid fa-school"></i> SMK Telkom Purwokerto (PWT)
+              </div>
+              <p class="timeline-desc">
+                Masih aktif menjadi siswa kelas 11 di SMK Telkom Purwokerto. Berfokus pada pengembangan keahlian teknologi rekayasa perangkat lunak, pemrograman web, dan desain sistem modern.
+              </p>
+              <div class="timeline-badges">
+                <span class="badge">Kelas 11</span>
+                <span class="badge">SMK Telkom PWT</span>
+                <span class="badge">Siswa Aktif</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: SMP Negeri 1 Punggelan -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-school"></i></div>
+            <div class="timeline-content control-panel-card">
+              <div class="timeline-date"><i class="fa-regular fa-calendar"></i> SEKOLAH MENENGAH PERTAMA</div>
+              <h3 class="timeline-role">ALUMNI / LULUSAN</h3>
+              <div class="timeline-company text-gold"><i class="fa-solid fa-building-columns"></i> SMP Negeri 1 Punggelan
+              </div>
+              <p class="timeline-desc">
+                Menyelesaikan pendidikan tingkat sekolah menengah pertama (SMP) dengan fondasi akademik yang kuat dan aktif dalam kegiatan sekolah.
+              </p>
+              <div class="timeline-badges">
+                <span class="badge">SMP N 1 Punggelan</span>
+                <span class="badge">Sekolah Menengah Pertama</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: SD Negeri 1 Kecepit -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-book-bookmark"></i></div>
+            <div class="timeline-content control-panel-card">
+              <div class="timeline-date"><i class="fa-regular fa-calendar"></i> SEKOLAH DASAR</div>
+              <h3 class="timeline-role">ALUMNI / LULUSAN</h3>
+              <div class="timeline-company text-cyan"><i class="fa-solid fa-building-columns"></i> SD Negeri 1 Kecepit</div>
+              <p class="timeline-desc">
+                Menempuh dan menyelesaikan pendidikan sekolah dasar selama 6 tahun dengan membangun dasar literasi, logika, dan sosialisasi.
+              </p>
+              <div class="timeline-badges">
+                <span class="badge">SD N 1 Kecepit</span>
+                <span class="badge">Sekolah Dasar</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4: TK Kanisius Kadirojo -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-child"></i></div>
+            <div class="timeline-content control-panel-card">
+              <div class="timeline-date"><i class="fa-regular fa-calendar"></i> TAMAN KANAK-KANAK</div>
+              <h3 class="timeline-role">PENDIDIKAN USIA DINI</h3>
+              <div class="timeline-company text-gold"><i class="fa-solid fa-shapes"></i> TK Kanisius Kadirojo
+              </div>
+              <p class="timeline-desc">
+                Awal mula menempuh pendidikan usia dini dalam mengasah kreativitas, komunikasi, dan karakter pembelajar.
+              </p>
+              <div class="timeline-badges">
+                <span class="badge">TK Kanisius Kadirojo</span>
+                <span class="badge">Taman Kanak-Kanak</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PELAYANAN / SERVICES & ESTIMATOR -->
+    <section id="services" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fa-solid fa-handshake"></i> SPESIFIKASI LAYANAN</span>
+          <h2 class="section-title">PELAYANAN <span class="text-gold">SAYA</span></h2>
+          <p class="section-subtitle">Pilih modul pelayanan yang Anda butuhkan untuk proyek digital Anda selanjutnya.
+          </p>
+          <div class="header-divider"></div>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service Card 1 -->
+          <div class="control-panel-card service-card">
+            <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <h3 class="service-name">WEB APP DEVELOPMENT</h3>
+            <p class="service-desc">
+              Pengembangan aplikasi web full-stack modern dari awal menggunakan HTML, CSS, JavaScript, React, dan
+              Node.js dengan struktur kode bersih & teruji.
+            </p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check text-gold"></i> Single Page Application (SPA)</li>
+              <li><i class="fa-solid fa-check text-gold"></i> Integrasi REST API & Database</li>
+              <li><i class="fa-solid fa-check text-gold"></i> Performa Loading Super Cepat</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div class="control-panel-card service-card">
+            <div class="service-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3 class="service-name">SCI-FI UI/UX DESIGN</h3>
+            <p class="service-desc">
+              Perancangan antarmuka futuristik, control panel cards, dashboard analitik, dan visual interaktif bertema
+              sci-fi dengan mikro-animasi memukau.
+            </p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check text-gold"></i> Interactive Wireframes & Figma</li>
+              <li><i class="fa-solid fa-check text-gold"></i> Dark Mode & Glassmorphism</li>
+              <li><i class="fa-solid fa-check text-gold"></i> Custom Iconography & HUD</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="control-panel-card service-card">
+            <div class="service-icon"><i class="fa-solid fa-cubes"></i></div>
+            <h3 class="service-name">CANVAS & 3D MOTION</h3>
+            <p class="service-desc">
+              Integrasi elemen 2D Canvas, Three.js 3D graphics, particle engine space background, serta efek audio Web
+              Audio API interaktif.
+            </p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check text-gold"></i> Custom Interactive Canvas</li>
+              <li><i class="fa-solid fa-check text-gold"></i> Audio Synthesizer Effects</li>
+              <li><i class="fa-solid fa-check text-gold"></i> Smooth 60 FPS Animations</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 4 -->
+          <div class="control-panel-card service-card">
+            <div class="service-icon"><i class="fa-solid fa-gauge-high"></i></div>
+            <h3 class="service-name">OPTIMISASI & REFACTORING</h3>
+            <p class="service-desc">
+              Audit dan perbaikan performa website lama, perbaikan bug kritis, pembersihan kode, dan peningkatan skor
+              Core Web Vitals hingga 100%.
+            </p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check text-gold"></i> SEO & Accessibility (a11y)</li>
+              <li><i class="fa-solid fa-check text-gold"></i> Mobile Responsiveness Fix</li>
+              <li><i class="fa-solid fa-check text-gold"></i> Codebase Refactoring</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Interactive Service Transmission Request Builder -->
+        <div class="control-panel-card estimator-panel">
+          <div class="panel-header">
+            <span class="panel-title"><i class="fa-solid fa-sliders"></i> KALKULATOR TRANSMISI PESANAN
+              PRAPROYEKSIONAL</span>
+            <span class="panel-status status-online">&bull; INTERACTIVE</span>
+          </div>
+          <div class="panel-body">
+            <div class="estimator-grid">
+              <div class="est-group">
+                <label>PILIH LAYANAN UTAMA:</label>
+                <select id="est-service-type" class="scifi-select">
+                  <option value="webapp">Web Application Development</option>
+                  <option value="scifi-ui">Sci-Fi UI/UX Design System</option>
+                  <option value="canvas3d">3D & Canvas Motion Interactive</option>
+                  <option value="optimization">Audit Performa & Core Web Vitals</option>
+                </select>
+              </div>
+
+              <div class="est-group">
+                <label>ESTIMASI SKALA PROYEK:</label>
+                <select id="est-scale" class="scifi-select">
+                  <option value="small">Skala Menengah / Misi Cepat (1-2 Minggu)</option>
+                  <option value="medium">Skala Standar Armada (2-4 Minggu)</option>
+                  <option value="large">Skala Kompleks Galaksi (1-2 Bulan)</option>
+                </select>
+              </div>
+
+              <div class="est-summary">
+                <div class="est-label">ESTIMASI ANGGARAN REKOMENDASI:</div>
+                <div id="est-price-val" class="est-price">RP 5.000.000 - 8.000.000</div>
+                <button id="btn-use-estimate" class="scifi-btn btn-primary btn-sm mt-2">
+                  <i class="fa-solid fa-paper-plane"></i> KIRIM BESERTA TRANSMISI KONTAK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: PRESTASI / ACHIEVEMENTS -->
+    <section id="achievements" class="section-padding bg-panel">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fa-solid fa-award"></i> REKAP ENKRIPSI PRESTASI</span>
+          <h2 class="section-title">PRESTASI & <span class="text-gold">MEDALI</span></h2>
+          <div class="header-divider"></div>
+        </div>
+
+        <div class="achievements-grid">
+          <!-- Achievement 1 -->
+          <div class="control-panel-card achievement-card">
+            <div class="medal-icon"><i class="fa-solid fa-medal text-gold"></i></div>
+            <div class="achievement-info">
+              <h3 class="achievement-title">MEDAL OF YAVIN 2025</h3>
+              <div class="achievement-issuer">Rebel Developers Guild &bull; Winner Best Sci-Fi Web UI</div>
+              <p class="achievement-desc">Penghargaan tertinggi atas inovasi antarmuka sinematik paling dramatis dan
+                intuitif.</p>
+            </div>
+          </div>
+
+          <!-- Achievement 2 -->
+          <div class="control-panel-card achievement-card">
+            <div class="medal-icon"><i class="fa-solid fa-shield-halved text-cyan"></i></div>
+            <div class="achievement-info">
+              <h3 class="achievement-title">MASTER JEDI CERTIFICATION</h3>
+              <div class="achievement-issuer">Galactic Web Institute &bull; Certified Full-Stack Engineer</div>
+              <p class="achievement-desc">Sertifikasi kelulusan tingkat lanjut dalam arsitektur web modern, keamanan
+                data, dan optimisasi.</p>
+            </div>
+          </div>
+
+          <!-- Achievement 3 -->
+          <div class="control-panel-card achievement-card">
+            <div class="medal-icon"><i class="fa-solid fa-bolt text-gold"></i></div>
+            <div class="achievement-info">
+              <h3 class="achievement-title">CORELLIAN SPEED RUN AWARD</h3>
+              <div class="achievement-issuer">Core Web Vitals Global &bull; Lighthouse 100/100</div>
+              <p class="achievement-desc">Penghargaan kecepatan loading web terbaik (LCP &lt; 0.8s) tanpa mengorbankan
+                estetika visual.</p>
+            </div>
+          </div>
+
+          <!-- Achievement 4 -->
+          <div class="control-panel-card achievement-card">
+            <div class="medal-icon"><i class="fa-solid fa-trophy text-red"></i></div>
+            <div class="achievement-info">
+              <h3 class="achievement-title">CYBER SECURITY VANGUARD</h3>
+              <div class="achievement-issuer">Sub-space Defense Network &bull; API Encryption Expert</div>
+              <p class="achievement-desc">Pengakuan dalam perancangan sistem komunikasi dan enkripsi transmisi data
+                tingkat tinggi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: KOMENTAR / COMMENTS -->
+    <section id="comments" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fa-solid fa-comments"></i> TRANSMISI SEKUTU</span>
+          <h2 class="section-title">KOMENTAR <span class="text-gold">PENGUNJUNG</span></h2>
+          <p class="section-subtitle">Bagikan pesan, kesan, atau sapaan Anda kepada operatif lain di galaksi digital.</p>
+          <div class="header-divider"></div>
+        </div>
+
+        <div class="comments-layout">
+          <div class="control-panel-card comment-form-card">
+            <div class="panel-header">
+              <span class="panel-title"><i class="fa-solid fa-pen-to-square"></i> TULIS KOMENTAR</span>
+              <span class="panel-status status-online">OPEN CHANNEL</span>
+            </div>
+            <div class="panel-body">
+              <form id="comment-form" class="scifi-form">
+                <div class="form-group">
+                  <label for="comment-name"><i class="fa-solid fa-user"></i> NAMA / KODE PANGGILAN:</label>
+                  <input type="text" id="comment-name" class="scifi-input" placeholder="Masukkan nama Anda" maxlength="60" required>
+                </div>
+                <div class="form-group">
+                  <label for="comment-message"><i class="fa-solid fa-comment-dots"></i> PESAN:</label>
+                  <textarea id="comment-message" class="scifi-textarea" rows="5" placeholder="Tuliskan komentar Anda..." maxlength="500" required></textarea>
+                </div>
+                <button type="submit" class="scifi-btn btn-primary btn-block">
+                  <i class="fa-solid fa-paper-plane"></i> PUBLIKASIKAN KOMENTAR
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="control-panel-card comment-list-card">
+            <div class="panel-header">
+              <span class="panel-title"><i class="fa-solid fa-message"></i> LOG KOMENTAR</span>
+              <span id="comment-count" class="panel-status status-active">0 PESAN</span>
+            </div>
+            <div id="comments-list" class="comments-list" aria-live="polite">
+              <p class="comments-empty">Belum ada transmisi. Jadilah yang pertama mengirim komentar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: KONTAK / CONTACT TERMINAL -->
+    <section id="contact" class="section-padding bg-panel">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fa-solid fa-satellite-dish"></i> TERMINAL KOMUNIKASI SUB-SPASI</span>
+          <h2 class="section-title">HUBUNGI <span class="text-gold">SAYA</span></h2>
+          <p class="section-subtitle">Kirim sinyal transmisi langsung ke terminal operatif Mikael Kevin Siahaan.</p>
+          <div class="header-divider"></div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Terminal Direct Message Form -->
+          <div class="control-panel-card contact-form-card">
+            <div class="panel-header">
+              <span class="panel-title"><i class="fa-solid fa-terminal"></i> TRANSMITTER FREKUENSI TERENKRIPSI</span>
+              <span class="panel-status status-online">&bull; HOLONET LIVE</span>
+            </div>
+            <div class="panel-body">
+              <form id="transmission-form" class="scifi-form">
+                <div class="form-group">
+                  <label for="comm-name"><i class="fa-solid fa-user-astronaut"></i> NAMA / IDENTITAS PENGIRIM:</label>
+                  <input type="text" id="comm-name" class="scifi-input"
+                    placeholder="Masukkan Nama Anda / Kode Panggilan" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="comm-email"><i class="fa-solid fa-envelope"></i> FREKUENSI EMAIL / HOLONET ID:</label>
+                  <input type="email" id="comm-email" class="scifi-input" placeholder="nama@galaksi.com" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="comm-subject"><i class="fa-solid fa-tag"></i> SUBJEK TRANSMISI / NAMA PROYEK:</label>
+                  <input type="text" id="comm-subject" class="scifi-input" placeholder="Misal: Penawaran Proyek Web App"
+                    required>
+                </div>
+
+                <div class="form-group">
+                  <label for="comm-message"><i class="fa-solid fa-comment-dots"></i> DETAIL TRANSMISI PESAN:</label>
+                  <textarea id="comm-message" class="scifi-textarea" rows="5"
+                    placeholder="Tuliskan pesan atau spesifikasi proyek Anda di sini..." required></textarea>
+                </div>
+
+                <button type="submit" class="scifi-btn btn-primary btn-block btn-lg lightsaber-btn">
+                  <span class="btn-saber-blade"></span>
+                  <i class="fa-solid fa-paper-plane"></i> KIRIM SINYAL TRANSMISI
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Contact Holonet Info Panel -->
+          <div class="control-panel-card contact-info-card">
+            <div class="panel-header">
+              <span class="panel-title"><i class="fa-solid fa-tower-cell"></i> STATUS RADAR & SALURAN DIRECT</span>
+              <span class="panel-status status-active">ACTIVE FREQ</span>
+            </div>
+            <div class="panel-body">
+              <div class="signal-status-box">
+                <div class="signal-wave">
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                </div>
+                <div class="signal-text">
+                  <div class="status-title">STATUS SALURAN HOLONET</div>
+                  <div class="status-val text-green">TERHUBUNG & ENKRIPSI 256-BIT ACTIVE</div>
+                </div>
+              </div>
+
+              <div class="direct-channels-list">
+                <div class="channel-item">
+                  <div class="chan-icon"><i class="fa-solid fa-envelope"></i></div>
+                  <div class="chan-info">
+                    <span class="chan-lbl">ALAMAT EMAIL:</span>
+                    <a href="mailto:ksiahaan526@gmail.com" class="chan-val">ksiahaan526@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="chan-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                  <div class="chan-info">
+                    <span class="chan-lbl">WHATSAPP:</span>
+                    <a href="https://wa.me/628575718174414" target="_blank" rel="noopener" class="chan-val">+62 857-5718-174414</a>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="chan-icon"><i class="fa-brands fa-github"></i></div>
+                  <div class="chan-info">
+                    <span class="chan-lbl">GITHUB REPOSITORY:</span>
+                    <a href="https://github.com" target="_blank" rel="noopener"
+                      class="chan-val">github.com/mksiahaan</a>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="chan-icon"><i class="fa-brands fa-linkedin"></i></div>
+                  <div class="chan-info">
+                    <span class="chan-lbl">LINKEDIN PROFILE:</span>
+                    <a href="https://www.linkedin.com/in/mikaelkevinsiahaan" target="_blank" rel="noopener"
+                      class="chan-val">linkedin.com/in/mikaelkevinsiahaan</a>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="chan-icon"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="chan-info">
+                    <span class="chan-lbl">LOKASI KOORDINAT:</span>
+                    <span class="chan-val">Jl. Gn. Slamet I, Dusun II, Purwosari, Kec. Baturaden, Kabupaten Banyumas, Jawa Tengah 53126</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="social-holo-buttons">
+                <a href="mailto:ksiahaan526@gmail.com" class="social-holo-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://wa.me/628575718174414" target="_blank" rel="noopener" class="social-holo-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/mikaelkevinsiahaan" target="_blank" rel="noopener" class="social-holo-btn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/mksiahaan" target="_blank" rel="noopener" class="social-holo-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="star-wars-gold text-lg">&copy; 2026 MIKAEL KEVIN SIAHAAN</span>
+        <span class="footer-tagline">DO YOU THINK I HAVE FORGOTTEN.</span>
+      </div>
+      <div class="footer-back-top">
+        <a href="#hero" class="scifi-btn btn-sm"><i class="fa-solid fa-arrow-up"></i> TOP OF GALAXIES</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL POPUP FOR PROJECT DETAILS -->
+  <div id="project-modal" class="modal-overlay">
+    <div class="modal-container control-panel-card">
+      <div class="modal-header">
+        <span id="modal-project-title" class="modal-title">PROJECT TITLE</span>
+        <button id="modal-close" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-project-screen" class="modal-screen-container">
+          <!-- Dynamic SVG / Visual injected via JS -->
+        </div>
+        <div class="modal-details-grid">
+          <div class="modal-detail-box">
+            <span class="detail-label">DESKRIPSI LENGKAP:</span>
+            <p id="modal-project-desc" class="detail-text">Deskripsi proyek akan tampil di sini...</p>
+          </div>
+          <div class="modal-detail-box">
+            <span class="detail-label">TEKNOLOGI & BLUEPRINT:</span>
+            <div id="modal-project-tags" class="tech-tags"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a id="modal-live-link" href="#" target="_blank" class="scifi-btn btn-primary"><i
+            class="fa-solid fa-arrow-up-right-from-square"></i> DEMO LIVE INTERAKTIF</a>
+        <button class="scifi-btn btn-secondary modal-close-trigger"><i class="fa-solid fa-xmark"></i> TUTUP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSMISSION CONFIRMATION MODAL -->
+  <div id="trans-confirm-modal" class="modal-overlay">
+    <div class="modal-container control-panel-card text-center" style="max-width: 500px;">
+      <div class="modal-header">
+        <span class="modal-title text-green"><i class="fa-solid fa-circle-check"></i> TRANSMISI TERKIRIM</span>
+        <button class="modal-close-btn trans-modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="trans-success-icon text-gold">
+          <i class="fa-solid fa-satellite"></i>
+        </div>
+        <h3 class="text-cyan mt-2">SINYAL BERHASIL DIPANCARKAN!</h3>
+        <p class="mt-2 text-muted">
+          Pesan transmisi Anda telah terenkripsi dan terkirim ke terminal Holonet Mikael Kevin Siahaan. Tanggapan balasan akan
+          dikirimkan secepat kecepatan hyperdrive!
+        </p>
+      </div>
+      <div class="modal-footer justify-center">
+        <button class="scifi-btn btn-primary trans-modal-close"><i class="fa-solid fa-check"></i> OK, TERIMA
+          KASIH</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- External & Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>
